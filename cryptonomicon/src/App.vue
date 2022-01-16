@@ -1,6 +1,7 @@
 <template>
   <div class="container mx-auto flex flex-col items-center bg-gray-100 p-4">
     <div
+      v-if="loader"
       class="fixed w-100 h-100 opacity-80 bg-purple-800 inset-0 z-50 flex items-center justify-center"
     >
       <svg
@@ -23,6 +24,9 @@
           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
         ></path>
       </svg>
+      <div class="goto" v-on:click="goto">
+        Нажми на меня!
+      </div>
     </div>
     <div class="container">
       <section>
@@ -243,11 +247,26 @@
 </template>
 
 <script>
+import './app.css'
+
 export default {
   name: "App",
+  data () {
+    return {
+      loader: true
+    }
+  },
+  methods: {
+    goto() {
+      this.loader = !this.loader
+    }
+  }
 };
 </script>
 
-<style src="./app.css">
-
+<style>
+.goto {
+  background: #ccc;
+  cursor: pointer;
+}
 </style>
